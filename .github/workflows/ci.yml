@@ -1,0 +1,43 @@
+name: Backend CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew check bootJar --no-daemon
+      - run: docker build -t devpath-ai:ci .
+      - uses: anchore/scan-action@v6
+        with:
+          image: devpath-ai:ci
+          fail-build: true
+          severity-cutoff: high
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports
+          path: '**/build/reports/tests/'
+  security:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew classes --no-daemon
+      - uses: github/codeql-action/analyze@v3
