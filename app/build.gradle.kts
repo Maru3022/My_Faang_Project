@@ -16,7 +16,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.modulith:spring-modulith-starter-jdbc")
     implementation("org.liquibase:liquibase-core")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.17")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation(kotlin("reflect"))
     runtimeOnly("org.postgresql:postgresql")
