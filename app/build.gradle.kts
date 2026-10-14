@@ -3,7 +3,7 @@ plugins {
     id("org.springframework.boot")
 }
 dependencies {
-    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.5.16"))
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:4.1.1"))
     implementation(platform("org.springframework.modulith:spring-modulith-bom:1.4.13"))
     implementation(project(":shared-kernel"))
     implementation(project(":user-profile"))
