@@ -19,6 +19,7 @@ jobs:
           image: devpath-ai:ci
           fail-build: true
           severity-cutoff: high
+          only-fixed: true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
