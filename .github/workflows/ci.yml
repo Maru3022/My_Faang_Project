@@ -14,7 +14,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - run: ./gradlew check bootJar --no-daemon
       - run: docker build -t devpath-ai:ci .
-      - uses: anchore/scan-action@v6
+      - uses: anchore/scan-action@v7
         with:
           image: devpath-ai:ci
           fail-build: true
