@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:25-jre-alpine
 
 # The upstream image can lag behind Alpine security package rebuilds.
 # Apply available fixes before the vulnerability scan runs in CI.
